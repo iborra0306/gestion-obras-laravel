@@ -10,3 +10,5 @@
 ## Proyecto de aprendizaje
 Este proyecto sirve para ampliar conocimientos en Laravel y fundamentos del backend.
 Consiste en migrar un proyecto de ERP en Odoo (proyecto real ya en despliegue) a Laravel.
+
+ [Repo de guia](https://pdawgabriel-hub.github.io/curso-laravel/)
