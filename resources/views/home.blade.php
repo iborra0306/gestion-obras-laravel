@@ -14,5 +14,6 @@
     <div class="mt-4 flex gap-4">
         <a href="{{ route('clientes.index') }}" class="underline">Clientes</a>
         <a href="{{ route('obras.index') }}" class="underline">Obras</a>
+        <a href="{{ route('trabajadores.index') }}" class="underline">Trabajadores</a>
     </div>
 </x-layout>

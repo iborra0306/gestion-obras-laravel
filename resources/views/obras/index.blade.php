@@ -21,7 +21,15 @@
                     <td class="px-3 py-2">{{ $obra['descripcion'] }}</td>
                     <td class="px-3 py-2">{{ $obra['cliente_id'] }}</td>
                     <td class="px-3 py-2">{{ number_format($obra['total'], 2, ',', '.') . ' €' }}</td>
-                    <td class="px-3 py-2">{{ number_format($obra['cobrado'], 2, ',', '.') . ' €' }}</td>
+                    <td class="px-3 py-2">
+                        @if ($obra['cobrado'] <= 0)
+                            Pendiente
+                        @elseif ($obra['cobrado'] < $obra['total'])
+                            Parcial
+                        @else
+                            Pagado
+                        @endif
+                    </td>
                     <td class="px-3 py-2 text-right">
                         <a href="{{ route('obras.show', $id) }}" class="underline">Ver</a>
                     </td>
