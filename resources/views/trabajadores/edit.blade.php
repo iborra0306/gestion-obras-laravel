@@ -1,5 +1,5 @@
 <x-layout titulo="Modificar trabajador">
-    <h1 class="mb-4 text-2xl font-semibold">Modificar trabajador: {{ $trabajdor['nombre'] }} {{ $cliente['apellidos'] }}</h1>
+    <h1 class="mb-4 text-2xl font-semibold">Modificar trabajador: {{ $trabajador['nombre'] }} {{ $trabajador['apellido'] }}</h1>
     
     <form method="POST" action="{{ route('trabajadores.update', $id) }}">
         @csrf

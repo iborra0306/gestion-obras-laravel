@@ -68,7 +68,7 @@ class ObrasController extends Controller
         $datos = $request->validated();
 
         return redirect()->route('obras.index')
-                ->with('mensaje', "Obra «{$datos['nombre']}» creada correctamente.");
+                ->with('mensaje', "Obra {$datos['codigo']} creada correctamente.");
     }
 
     public function update(ObraRequest $request, int $id): RedirectResponse
@@ -77,7 +77,7 @@ class ObrasController extends Controller
 
         $datos = $request->validated();
 
-        return redirect()->route('oobras.show', $id)
-                ->with('mensaje', "Obra «{$datos['nombre']}» actaulizada correctamente.");
+        return redirect()->route('obras.show', $id)
+                ->with('mensaje', "Obra {$datos['codigo']} actaulizada correctamente.");
     }
 }
