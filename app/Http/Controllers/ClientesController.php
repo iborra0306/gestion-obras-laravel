@@ -51,7 +51,7 @@ class ClientesController extends Controller
         $datos = $request->validated();
 
         return redirect()->route('clientes.index')
-                ->with('mensaje', "Cliente «{$datos['nombre']}» creado correctamente.");
+                ->with('mensaje', "Cliente {$datos['nombre']} creado correctamente.");
     }
 
     public function update(ClienteRequest $request, int $id): RedirectResponse
@@ -61,7 +61,7 @@ class ClientesController extends Controller
         $datos = $request->validated();
 
         return redirect()->route('clientes.show', $id)
-                ->with('mensaje', "Cliente «{$datos['nombre']}» actualizado correctamente");
+                ->with('mensaje', "Cliente {$datos['nombre']} actualizado correctamente");
     }
 
 }

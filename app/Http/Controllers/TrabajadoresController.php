@@ -50,7 +50,7 @@ class TrabajadoresController extends Controller
         $datos = $request->validated();
 
         return redirect()->route('trabajadores.index')
-                ->with('mensaje', "Trabajador «{$datos['nombre']}» creado correctamente");
+                ->with('mensaje', "Trabajador {$datos['nombre']} creado correctamente");
     }
 
     public function update(TrabajadorRequest $request, int $id): RedirectResponse
@@ -60,6 +60,6 @@ class TrabajadoresController extends Controller
         $datos = $request->validated();
 
         return redirect()->route('trabajadores.show', $id)
-            ->with('mensaje', "Trabajador «{$datos['nombre']}» actualizado correctamente");
+            ->with('mensaje', "Trabajador {$datos['nombre']} actualizado correctamente");
     }
 }

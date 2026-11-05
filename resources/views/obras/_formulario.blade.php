@@ -11,7 +11,7 @@
     ] as $campo => $etiqueta)
         <label class="block">
             <span class="text-sm font-medium">{{ $etiqueta }}</span>
-            <input type="text" name="{{ $campo }}" value="{{ old($campo, $c[$campo] ?? '') }}"
+            <input type="text" name="{{ $campo }}" value="{{ old($campo, $o[$campo] ?? '') }}"
                    @class(['mt-1 w-full rounded border px-2 py-1', 'border-red-500' => $errors->has($campo)])>
             @error($campo)
                 <span class="text-sm text-red-600">{{ $message }}</span>
