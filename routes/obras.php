@@ -11,4 +11,6 @@ Route::controller(ObrasController::class)
         Route::get('show/{id}', 'show')->whereNumber('id')->name('show');
         Route::get('create', 'create')->name('create');
         Route::get('edit/{id}', 'edit')->whereNumber('id')->name('edit');
+        Route::post('store', 'store')->name('store');
+        Route::put('update/{id}', 'update')->name('update')->whereNumber('id');
     });

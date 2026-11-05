@@ -53,7 +53,9 @@
 
     <main class="mx-auto max-w-6xl px-4 py-6">
         @if (session('mensaje'))
-            <div class="mb-4 rounded bg-green-100 px-4 py-2 text-green-800">{{ session('mensaje') }}</div>
+            <div class="mb-4 rounded bg-green-100 px-3 py-2 text-green-800">
+                {{ session('mensaje') }}
+            </div>
         @endif
 
         {{ $slot }}

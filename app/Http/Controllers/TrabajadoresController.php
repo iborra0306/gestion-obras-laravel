@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
+use App\Http\Requests\TrabajadorRequest;
+use Illuminate\Http\RedirectResponse;
 
 class TrabajadoresController extends Controller
 {
@@ -41,5 +43,23 @@ class TrabajadoresController extends Controller
         abort_unless(isset($this->arrayTrabajadores[$id]), 404);
 
         return view('trabajadores.edit', ['trabajador' => $this->arrayTrabajadores[$id], 'id' => $id]);
+    }
+
+    public function store(TrabajadorRequest $request): RedirectResponse
+    {
+        $datos = $request->validated();
+
+        return redirect()->route('trabajadores.index')
+                ->with('mensaje', "Trabajador «{$datos['nombre']}» creado correctamente");
+    }
+
+    public function update(TrabajadorRequest $request, int $id): RedirectResponse
+    {
+        abort_unless(isset($this->arrayTrabajadores[$id]), 404);
+
+        $datos = $request->validated();
+
+        return redirect()->route('trabajadores.show', $id)
+            ->with('mensaje', "Trabajador «{$datos['nombre']}» actualizado correctamente");
     }
 }

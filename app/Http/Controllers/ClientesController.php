@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
+use App\Http\Requests\ClienteRequest;
+use Illuminate\Http\RedirectResponse;
 
 class ClientesController extends Controller
 {
@@ -43,4 +45,23 @@ class ClientesController extends Controller
 
         return view('clientes.edit', ['cliente' => $this->arrayClientes[$id], 'id' => $id]);
     }
+
+    public function store(ClienteRequest $request): RedirectResponse
+    {
+        $datos = $request->validated();
+
+        return redirect()->route('clientes.index')
+                ->with('mensaje', "Cliente «{$datos['nombre']}» creado correctamente.");
+    }
+
+    public function update(ClienteRequest $request, int $id): RedirectResponse
+    {
+        abort_unless(isset($this->arrayClientes[$id]), 404);
+
+        $datos = $request->validated();
+
+        return redirect()->route('clientes.show', $id)
+                ->with('mensaje', "Cliente «{$datos['nombre']}» actualizado correctamente");
+    }
+
 }
