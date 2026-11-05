@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+require __DIR__ . '/clientes.php';
+require __DIR__ . '/obras.php';
+require __DIR__ . '/trabajadores.php';
+
+Route::get('/', HomeController::class);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
