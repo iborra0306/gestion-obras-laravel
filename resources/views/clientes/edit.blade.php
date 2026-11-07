@@ -1,7 +1,7 @@
 <x-layout titulo="Modificar cliente">
-    <h1 class="mb-4 text-2xl font-semibold">Modificar cliente: {{ $cliente['nombre'] }} {{ $cliente['apellidos'] }}</h1>
+    <h1 class="mb-4 text-2xl font-semibold">Modificar cliente: {{ $cliente->nombreCompleto() }}</h1>
 
-    <form method="POST" action="{{ route('clientes.update', $id) }}">
+    <form method="POST" action="{{ route('clientes.update', $cliente->id) }}">
         @csrf
         @method('PUT')
         @include('clientes._formulario')

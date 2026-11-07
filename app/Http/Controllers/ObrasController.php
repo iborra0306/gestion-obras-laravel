@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App\Http\Requests\ObraRequest;
+use App\Repositorios\ClienteRepository;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ObrasController extends Controller
 {
@@ -21,19 +22,10 @@ class ObrasController extends Controller
         10 => ['codigo' => 'OBR0010', 'descripcion' => 'Reforma integral de vivienda', 'cliente_id' => 10, 'total' => 60500.00, 'cobrado' => 15000.00],
     ];
 
-    // Datos de prueba hasta el Bloque 6: pega aquí el contenido de array_clientes.php
-    private array $arrayClientes = [
-        1 => ['nombre' => 'Juan', 'apellidos' => 'Pérez López', 'nif' => '12345678Z', 'direccion' => 'Calle Mayor 12', 'cod_postal' => '28013', 'telefono' => '600111222'],
-        2 => ['nombre' => 'María', 'apellidos' => 'García Ruiz', 'nif' => '23456789D', 'direccion' => 'Avenida de América 45', 'cod_postal' => '28028', 'telefono' => '600222333'],
-        3 => ['nombre' => 'Antonio', 'apellidos' => 'Martínez Sanz', 'nif' => '34567890V', 'direccion' => 'Calle Toledo 8', 'cod_postal' => '28005', 'telefono' => '600333444'],
-        4 => ['nombre' => 'Lucía', 'apellidos' => 'Fernández Gil', 'nif' => '45678901G', 'direccion' => 'Paseo de la Castellana 100', 'cod_postal' => '28046', 'telefono' => '600444555'],
-        5 => ['nombre' => 'Comunidad de Propietarios', 'apellidos' => 'Calle Alcalá 200', 'nif' => 'H12345678', 'direccion' => 'Calle Alcalá 200', 'cod_postal' => '28028', 'telefono' => '910555666'],
-        6 => ['nombre' => 'Javier', 'apellidos' => 'Romero Díaz', 'nif' => null, 'direccion' => 'Calle Atocha 30', 'cod_postal' => '28012', 'telefono' => '600666777'],
-        7 => ['nombre' => 'Carmen', 'apellidos' => 'Navarro Torres', 'nif' => '67890123K', 'direccion' => 'Calle Princesa 15', 'cod_postal' => '28008', 'telefono' => '600777888'],
-        8 => ['nombre' => 'Hostelería Sol S.L.', 'apellidos' => null, 'nif' => 'B87654321', 'direccion' => 'Puerta del Sol 4', 'cod_postal' => '28013', 'telefono' => '910888999'],
-        9 => ['nombre' => 'Pedro', 'apellidos' => 'Jiménez Moreno', 'nif' => '89012345M', 'direccion' => 'Calle Bravo Murillo 77', 'cod_postal' => '28020', 'telefono' => '600999000'],
-        10 => ['nombre' => 'Elena', 'apellidos' => 'Ortega Vidal', 'nif' => '90123456A', 'direccion' => 'Calle Serrano 50', 'cod_postal' => '28001', 'telefono' => '601000111'],
-    ];
+    public function __construct(
+        private readonly ClienteRepository $clientes,
+    ) {
+    }
 
     public function index(): View
     {
@@ -45,10 +37,13 @@ class ObrasController extends Controller
         abort_unless(isset($this->arrayObras[$id]), 404);
 
         $obra = $this->arrayObras[$id];
-        $cliente = $this->arrayClientes[$obra['cliente_id']];
-        $nombreCliente = trim($cliente['nombre'] . ' ' . ($cliente['apellidos'] ?? ''));
+        $cliente = $this->clientes->porId($obra['cliente_id']);
 
-        return view('obras.show', ['obra' => $obra,'id' => $id,'cliente' => $nombreCliente,]);
+        return view('obras.show', [
+            'obra' => $obra,
+            'id' => $id,
+            'cliente' => $cliente?->nombreCompleto() ?? '',
+        ]);
     }
 
     public function create(): View
@@ -68,7 +63,7 @@ class ObrasController extends Controller
         $datos = $request->validated();
 
         return redirect()->route('obras.index')
-                ->with('mensaje', "Obra {$datos['codigo']} creada correctamente.");
+            ->with('mensaje', "Obra {$datos['codigo']} creada correctamente.");
     }
 
     public function update(ObraRequest $request, int $id): RedirectResponse
@@ -78,6 +73,6 @@ class ObrasController extends Controller
         $datos = $request->validated();
 
         return redirect()->route('obras.show', $id)
-                ->with('mensaje', "Obra {$datos['codigo']} actaulizada correctamente.");
+            ->with('mensaje', "Obra {$datos['codigo']} actualizada correctamente.");
     }
 }
