@@ -15,4 +15,8 @@ class Trabajador extends Model
     protected $table = 'trabajadores';
 
     protected $fillable = ['tipo', 'nombre', 'apellido', 'telefono', 'coste_hora_estandar'];
+
+    protected $attributes = [
+        'coste_hora_estandar' => 20,
+    ];
 }

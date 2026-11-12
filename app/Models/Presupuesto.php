@@ -23,4 +23,9 @@ class Presupuesto extends Model
             'iva'   => 'float',
         ];
     }
+
+    protected $attributes = [
+        'iva'    => 21,
+        'estado' => 'pendiente',
+    ];
 }

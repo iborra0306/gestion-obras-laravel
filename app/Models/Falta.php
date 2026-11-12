@@ -20,4 +20,8 @@ class Falta extends Model
             'fecha_fin'    => 'date:Y-m-d',
         ];
     }
+
+    protected $attributes = [
+        'tipo' => 'vacaciones',
+    ];
 }
