@@ -20,4 +20,13 @@ class ParteProveedor extends Model
             'importe' => 'float',
         ];
     }
+
+    protected static function booted(): void
+    {
+        static::creating(function (ParteProveedor $p) {
+
+            $p->fecha ??= now()->toDateString();
+
+        });
+    }
 }

@@ -28,4 +28,21 @@ class Presupuesto extends Model
         'iva'    => 21,
         'estado' => 'pendiente',
     ];
+
+    protected static function booted(): void
+    {
+        static::creating(function (Presupuesto $p) {
+
+            $p->fecha ??= now()->toDateString();
+
+            $cliente = Huesped::find($p->cliente_id);
+            if ($cliente) {
+                $p->nombre_cliente ??= $cliente->nombre . ' ' . $cliente->apellidos;
+                $p->nif ??= $cliente->nif;
+                $p->direccion ??= $cliente->direccion;
+                $p->telefono ??= $cliente->telefono;
+            }
+
+        });
+    }
 }

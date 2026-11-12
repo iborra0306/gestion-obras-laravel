@@ -25,4 +25,16 @@ class LineaParteTrabajo extends Model
     {
         return Attribute::get(fn () => $this->horas * $this->coste_hora);
     }
+
+    protected static function booted(): void
+    {
+        static::creating(function (LineaParteTrabajo $l) {
+
+            $trabajador = Huesped::find($l->trabajador_id);
+            if ($trabajador) {
+                $p->coste_hora ??= $trabajador->coste_hora_estandar;
+            }
+
+        });
+    }
 }

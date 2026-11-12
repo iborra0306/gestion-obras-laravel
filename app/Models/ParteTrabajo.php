@@ -19,4 +19,13 @@ class ParteTrabajo extends Model
             'fecha' => 'date:Y-m-d',
         ];
     }
+
+    protected static function booted(): void
+    {
+        static::creating(function (ParteTrabajo $p) {
+
+            $p->fecha ??= now()->toDateString();
+
+        });
+    }
 }

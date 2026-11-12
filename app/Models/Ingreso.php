@@ -23,4 +23,18 @@ class Ingreso extends Model
             'importe' => 'float',
         ];
     }
+
+    protected static function booted(): void
+    {
+        static::creating(function (Ingreso $i) {
+
+            $i->fecha ??= now()->toDateString();
+
+            $nombre_obra = Huesped::find($i->cliente_id && $i->obra_id);
+            if ($nombre_obra) {
+                $i->nombre_obra ??= $nombre_obra->cliente_id . $nombre_obra->descripcion;
+            }
+
+        });
+    }
 }

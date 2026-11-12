@@ -20,4 +20,13 @@ class ParteEspecialista extends Model
             'importe' => 'float',
         ];
     }
+
+    protected static function booted(): void
+    {
+        static::creating(function (ParteEspecialista $p) {
+
+            $p->fecha ??= now()->toDateString();
+
+        });
+    }
 }
