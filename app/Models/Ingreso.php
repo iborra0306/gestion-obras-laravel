@@ -15,4 +15,12 @@ class Ingreso extends Model
     protected $table = 'ingresos';
 
     protected $fillable = ['obra_id', 'cliente_id', 'nombre_obra', 'tipo', 'fecha', 'documento', 'num_documento', 'importe'];
+
+    protected function casts(): array
+    {
+        return [
+            'fecha'   => 'date:Y-m-d',
+            'importe' => 'float',
+        ];
+    }
 }

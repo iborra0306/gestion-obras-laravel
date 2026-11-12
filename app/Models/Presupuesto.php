@@ -15,4 +15,12 @@ class Presupuesto extends Model
     protected $table = 'presupuestos';
 
     protected $fillable = ['fecha', 'cliente_id', 'obra_id', 'nombre_cliente', 'nif', 'direccion', 'telefono', 'iva', 'estado'];
+
+    protected function casts(): array
+    {
+        return [
+            'fecha' => 'date:Y-m-d',
+            'iva'   => 'float',
+        ];
+    }
 }

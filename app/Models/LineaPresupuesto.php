@@ -12,4 +12,11 @@ class LineaPresupuesto extends Model
     protected $table = 'lineas_presupuesto';
     
     protected $fillable = ['presupuesto_id', 'descripcion', 'uds', 'precio'];
+
+    protected function casts(): array
+    {
+        return [
+            'uds' => 'integer',
+        ];
+    }
 }

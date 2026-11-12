@@ -12,4 +12,12 @@ class ParteEspecialista extends Model
     protected $table = 'partes_especialista';
 
     protected $fillable = ['obra_id', 'especialista_id', 'fecha', 'descripcion', 'documento', 'importe', 'estado_pago', 'user_id'];
+
+    protected function casts(): array
+    {
+        return [
+            'fecha'   => 'date:Y-m-d',
+            'importe' => 'float',
+        ];
+    }
 }

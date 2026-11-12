@@ -12,4 +12,11 @@ class LineaParteTrabajo extends Model
     protected $table = 'lineas_parte_trabajo';
 
     protected $fillable = ['parte_trabajo_id', 'trabajador_id', 'horas', 'coste_hora'];
+
+    protected function casts(): array
+    {
+        return [
+            'horas' => 'float',
+        ];
+    }
 }

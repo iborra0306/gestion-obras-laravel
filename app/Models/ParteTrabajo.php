@@ -12,4 +12,11 @@ class ParteTrabajo extends Model
     protected $table = 'partes_trabajo';
 
     protected $fillable = ['obra_id', 'fecha', 'descripcion', 'user_id'];
+
+    protected function casts(): array
+    {
+        return [
+            'fecha' => 'date:Y-m-d',
+        ];
+    }
 }

@@ -12,4 +12,12 @@ class Falta extends Model
     protected $table = 'faltas';
 
     protected $fillable = ['trabajador_id', 'fecha_inicio', 'fecha_fin', 'tipo', 'motivo', 'user_id'];
+
+    protected function casts(): array
+    {
+        return [
+            'fecha_inicio' => 'date:Y-m-d',
+            'fecha_fin'    => 'date:Y-m-d',
+        ];
+    }
 }
