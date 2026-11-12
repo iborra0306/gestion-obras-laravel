@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class LineaParteTrabajo extends Model
 {
@@ -18,5 +19,10 @@ class LineaParteTrabajo extends Model
         return [
             'horas' => 'float',
         ];
+    }
+
+    protected function coste_subtotal(): Attribute
+    {
+        return Attribute::get(fn () => $this->horas * $this->coste_hora);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Concerns\TieneCodigo;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Trabajador extends Model
 {
@@ -19,4 +20,9 @@ class Trabajador extends Model
     protected $attributes = [
         'coste_hora_estandar' => 20,
     ];
+
+    protected function nombre_completo(): Attribute
+    {
+        return Attribute::get(fn () => trim($this->nombre . ' ' . $this->apellidos));
+    }
 }
