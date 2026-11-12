@@ -30,9 +30,10 @@ class Ingreso extends Model
 
             $i->fecha ??= now()->toDateString();
 
-            $nombre_obra = Huesped::find($i->cliente_id && $i->obra_id);
-            if ($nombre_obra) {
-                $i->nombre_obra ??= $nombre_obra->cliente_id . $nombre_obra->descripcion;
+            $obra = Obra::find($i->obra_id);
+            if ($obra) {
+                $i->cliente_id  ??= $obra->cliente_id;
+                $i->nombre_obra ??= $obra->descripcion;
             }
 
         });

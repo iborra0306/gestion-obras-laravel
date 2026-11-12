@@ -7,6 +7,8 @@ use App\Models\Concerns\TieneCodigo;
 
 class Gasto extends Model
 {
+    use TieneCodigo;
+
     public const PREFIJO = 'GAS';
 
     protected $table = 'gastos';

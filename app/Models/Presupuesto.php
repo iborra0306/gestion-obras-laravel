@@ -26,7 +26,7 @@ class Presupuesto extends Model
 
     protected $attributes = [
         'iva'    => 21,
-        'estado' => 'pendiente',
+        'estado' => 'no_aprobado',
     ];
 
     protected static function booted(): void
@@ -35,7 +35,7 @@ class Presupuesto extends Model
 
             $p->fecha ??= now()->toDateString();
 
-            $cliente = Huesped::find($p->cliente_id);
+            $cliente = Cliente::find($p->cliente_id);
             if ($cliente) {
                 $p->nombre_cliente ??= $cliente->nombre . ' ' . $cliente->apellidos;
                 $p->nif ??= $cliente->nif;

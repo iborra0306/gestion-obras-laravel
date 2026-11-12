@@ -21,7 +21,7 @@ class LineaParteTrabajo extends Model
         ];
     }
 
-    protected function coste_subtotal(): Attribute
+    protected function costeSubtotal(): Attribute
     {
         return Attribute::get(fn () => $this->horas * $this->coste_hora);
     }
@@ -30,9 +30,9 @@ class LineaParteTrabajo extends Model
     {
         static::creating(function (LineaParteTrabajo $l) {
 
-            $trabajador = Huesped::find($l->trabajador_id);
+            $trabajador = Trabajador::find($l->trabajador_id);
             if ($trabajador) {
-                $p->coste_hora ??= $trabajador->coste_hora_estandar;
+                $l->coste_hora ??= $trabajador->coste_hora_estandar;
             }
 
         });

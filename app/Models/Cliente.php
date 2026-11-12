@@ -17,7 +17,7 @@ class Cliente extends Model
 
     protected $fillable = ['nombre', 'apellidos', 'nif', 'direccion', 'cod_postal', 'telefono'];
 
-    protected function nombre_completo(): Attribute
+    protected function nombreCompleto(): Attribute
     {
         return Attribute::get(fn () => trim($this->nombre . ' ' . $this->apellidos));
     }

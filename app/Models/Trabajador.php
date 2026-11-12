@@ -17,12 +17,19 @@ class Trabajador extends Model
 
     protected $fillable = ['tipo', 'nombre', 'apellido', 'telefono', 'coste_hora_estandar'];
 
+    protected function casts(): array
+    {
+        return [
+            'coste_hora_estandar' => 'float',
+        ];
+    }
+
     protected $attributes = [
         'coste_hora_estandar' => 20,
     ];
 
-    protected function nombre_completo(): Attribute
+    protected function nombreCompleto(): Attribute
     {
-        return Attribute::get(fn () => trim($this->nombre . ' ' . $this->apellidos));
+        return Attribute::get(fn () => trim($this->nombre . ' ' . $this->apellido));
     }
 }

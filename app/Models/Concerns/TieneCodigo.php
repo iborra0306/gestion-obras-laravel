@@ -1,6 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models\Concerns;
+
+use App\Models\Secuencia;
 
 trait TieneCodigo
 {

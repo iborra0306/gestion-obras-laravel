@@ -21,7 +21,7 @@ class LineaPresupuesto extends Model
         ];
     }
 
-    protected function total_linea(): Attribute
+    protected function totalLinea(): Attribute
     {
         return Attribute::get(fn () => $this->uds * $this->precio);
     }
