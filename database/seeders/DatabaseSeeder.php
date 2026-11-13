@@ -7,6 +7,10 @@ use App\Models\Cliente;
 use App\Models\Trabajador;
 use App\Models\Proveedor;
 use App\Models\Especialista;
+use App\Models\Obra;
+use App\Models\Presupuesto;
+use App\Models\LineaPresupuesto;
+use App\Models\Ingreso;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,5 +31,9 @@ class DatabaseSeeder extends Seeder
         Trabajador::factory(20)->create();
         Proveedor::factory(20)->create();
         Especialista::factory(20)->create();
+        Obra::factory(20)->create();
+        Presupuesto::factory(20)->create();
+        LineaPresupuesto::factory(20)->create();
+        Ingreso::factory(20)->create();
     }
 }
