@@ -1,10 +1,7 @@
-<x-layout titulo="Modificar obra">
-    <h1 class="mb-4 text-2xl font-semibold">Modificar obra: {{ $obra['codigo'] }}</h1>
+<x-layout titulo="Editar obra">
+    <x-cabecera :titulo="'Editar ' . $obra['codigo']" />
 
-    <form method="POST" action="{{ route('obras.update', $id) }}">
-        @csrf
-        @method('PUT')
+    <x-formulario :action="route('obras.update', $id)" metodo="PUT" boton="Guardar cambios" :cancelar="route('obras.show', $id)">
         @include('obras._formulario')
-        <button type="submit" class="mt-4 rounded bg-slate-800 px-3 py-1.5 text-white">Guardar cambios</button>
-    </form>
+    </x-formulario>
 </x-layout>

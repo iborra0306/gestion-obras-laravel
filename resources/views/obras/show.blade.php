@@ -1,26 +1,15 @@
-<x-layout :titulo="$obra['codigo']">
-    <h1 class="mb-4 text-2xl font-semibold">{{ $obra['codigo'] }}</h1>
+<x-layout titulo="Obra">
+    <x-cabecera :titulo="$obra['codigo']" subtitulo="Ficha de obra">
+        <x-boton :href="route('obras.edit', $id)">Editar</x-boton>
+        <x-boton :href="route('obras.index')">Volver</x-boton>
+    </x-cabecera>
 
-    <dl class="grid grid-cols-[10rem_1fr] gap-2 bg-white p-4 shadow">
-        <dt class="font-medium">Codigo</dt>        <dd>{{ $obra['codigo'] }}</dd>
-        <dt class="font-medium">Descripcion</dt>  <dd>{{ $obra['descripcion'] }}</dd>
-        <dt class="font-medium">Cliente</dt>  <dd>{{ $cliente }}</dd>
-        <dt class="font-medium">Total</dt>   <dd>{{ number_format($obra['total'], 2, ',', '.') . ' €' }}</dd>
-        <dt class="font-medium">Cobrado</dt>   <dd>{{ number_format($obra['cobrado'], 2, ',', '.') . ' €' }}</dd>
-        <dt class="font-medium">Estado de pago</dt>
-            <dd>
-                @if ($obra['cobrado'] <= 0)
-                    Pendiente
-                @elseif ($obra['cobrado'] < $obra['total'])
-                    Parcial
-                @else
-                    Pagado
-                @endif
-            </dd>
-    </dl>
-
-    <div class="mt-4 flex gap-4">
-        <a href="{{ route('obras.edit', $id) }}" class="underline">Modificar</a>
-        <a href="{{ route('obras.index') }}" class="underline">Volver al listado</a>
-    </div>
+    <x-tarjeta titulo="Datos">
+        <dl>
+            <x-dato etiqueta="Descripcion">{{ $obra['descripcion'] }}</x-dato>
+            <x-dato etiqueta="Cliente">{{ $cliente }}</x-dato>
+            <x-dato etiqueta="Total">{{ number_format($obra['total'], 2, ',', '.') }} €</x-dato>
+            <x-dato etiqueta="Cobrado">{{ number_format($obra['cobrado'], 2, ',', '.') }} €</x-dato>
+        </dl>
+    </x-tarjeta>
 </x-layout>
