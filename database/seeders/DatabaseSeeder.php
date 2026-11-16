@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             FaltasTableSeeder::class,
             ProveedoresTableSeeder::class,
             EspecialistasTableSeeder::class,
+            ObrasTableSeeder::class,
         ]);
 
         Model::reguard();
