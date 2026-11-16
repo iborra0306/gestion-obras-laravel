@@ -1,9 +1,7 @@
 <x-layout titulo="Nueva obra">
-    <h1 class="mb-4 text-2xl font-semibold">Nueva obra</h1>
+    <x-cabecera titulo="Nueva obra" />
 
-    <form method="POST" action="{{ route('obras.store') }}">
-        @csrf
-        @include('obras._formulario', ['obras' => null])
-        <button type="submit" class="mt-4 rounded bg-slate-800 px-3 py-1.5 text-white">Guardar</button>
-    </form>
+    <x-formulario :action="route('obras.store')" metodo="POST" boton="Guardar" :cancelar="route('obras.index')">
+        @include('obras._formulario')
+    </x-formulario>
 </x-layout>
