@@ -19,8 +19,8 @@ class ParteTrabajoFactory extends Factory
     public function definition(): array
     {
         return [
-            'obra_id' => Obra::factory(),
-            'fecha' => fake()->dateTimeBetween('-1 year')->format('Y-m-d'),
+            'obra_id'     => Obra::factory(),
+            'fecha'       => fake()->dateTimeBetween('-1 year')->format('Y-m-d'),
             'descripcion' => fake()->sentence(),
         ];
     }

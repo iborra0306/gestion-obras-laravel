@@ -20,13 +20,13 @@ class ParteEspecialistaFactory extends Factory
     public function definition(): array
     {
         return [
-            'obra_id' => Obra::factory(),
+            'obra_id'         => Obra::factory(),
             'especialista_id' => Especialista::factory(),
-            'fecha' => fake()->dateTimeBetween('-1 year')->format('Y-m-d'),
-            'descripcion' => fake()->sentence(),
-            'documento' => fake()->bothify('FAC-####'),
-            'importe' => fake()->randomFloat(2, 50, 1000),
-            'estado_pago' => 'pendiente',
+            'fecha'           => fake()->dateTimeBetween('-1 year')->format('Y-m-d'),
+            'descripcion'     => fake()->sentence(),
+            'documento'       => fake()->bothify('FAC-####'),
+            'importe'         => fake()->randomFloat(2, 50, 1000),
+            'estado_pago'     => 'pendiente',
         ];
     }
 }

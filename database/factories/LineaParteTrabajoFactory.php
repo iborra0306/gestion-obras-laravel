@@ -21,8 +21,8 @@ class LineaParteTrabajoFactory extends Factory
     {
         return [
             'parte_trabajo_id' => ParteTrabajo::factory(),
-            'trabajador_id' => Trabajador::factory(),
-            'horas' => fake()->numberBetween(1, 8),
+            'trabajador_id'    => Trabajador::factory(),
+            'horas'            => fake()->numberBetween(1, 8),
         ];
     }
 }

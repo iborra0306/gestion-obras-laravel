@@ -20,8 +20,8 @@ class IngresoFactory extends Factory
     {
         return [
             'obra_id' => Obra::factory(),
-            'tipo' => 'Transferencia',
-            'fecha' => fake()->dateTimeBetween('-1 year')->format('Y-m-d'),
+            'tipo'    => 'Transferencia',
+            'fecha'   => fake()->dateTimeBetween('-1 year')->format('Y-m-d'),
             'importe' => fake()->randomFloat(2, 100, 200),
         ];
     }

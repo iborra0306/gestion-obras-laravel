@@ -19,11 +19,11 @@ class PresupuestoFactory extends Factory
     public function definition(): array
     {
         return [
-            'fecha' => fake()->dateTimeBetween('-1 year')->format('Y-m-d'),
+            'fecha'      => fake()->dateTimeBetween('-1 year')->format('Y-m-d'),
             'cliente_id' => Cliente::factory(),
-            'obra_id' => null,
-            'iva' => 21,
-            'estado' => 'no_aprobado',
+            'obra_id'    => null,
+            'iva'        => 21,
+            'estado'     => 'no_aprobado',
         ];
     }
 }

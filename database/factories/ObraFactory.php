@@ -21,7 +21,7 @@ class ObraFactory extends Factory
     {
         return [
             'descripcion' => 'Reforma de ' . fake()->word(),
-            'cliente_id' => Cliente::factory(),
+            'cliente_id'  => Cliente::factory(),
         ];
     }
 

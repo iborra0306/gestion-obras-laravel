@@ -22,10 +22,10 @@ class FaltaFactory extends Factory
 
         return [
             'trabajador_id' => Trabajador::factory(),
-            'fecha_inicio' => $inicio,
-            'fecha_fin' => date('Y-m-d', strtotime($inicio . ' +' . fake()->numberBetween(0, 10) . ' days')),
-            'tipo' => 'vacaciones',
-            'motivo' => fake()->sentence(),
+            'fecha_inicio'  => $inicio,
+            'fecha_fin'     => date('Y-m-d', strtotime($inicio . ' +' . fake()->numberBetween(0, 10) . ' days')),
+            'tipo'          => 'vacaciones',
+            'motivo'        => fake()->sentence(),
         ];
     }
 }

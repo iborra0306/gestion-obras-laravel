@@ -18,10 +18,10 @@ class TrabajadorFactory extends Factory
     public function definition(): array
     {
         return [
-            'tipo' => 'Peon',
-            'nombre' => fake()->firstName(),
-            'apellido' => fake()->lastName(),
-            'telefono' => fake()->numerify('6########'),
+            'tipo'                => 'Peon',
+            'nombre'              => fake()->firstName(),
+            'apellido'            => fake()->lastName(),
+            'telefono'            => fake()->numerify('6########'),
             'coste_hora_estandar' => 20,
         ];
     }

@@ -18,11 +18,11 @@ class EspecialistaFactory extends Factory
     public function definition(): array
     {
         return [
-            'tipo' => fake()->randomElement(['Arquitecto', 'Electricista']),
+            'tipo'       => fake()->randomElement(['Arquitecto', 'Electricista']),
             'referencia' => fake()->bothify('ESP-####'),
-            'nombre' => fake()->name(),
-            'telefono' => fake()->numerify('6########'),
-            'correo' => fake()->safeEmail(),
+            'nombre'     => fake()->name(),
+            'telefono'   => fake()->numerify('6########'),
+            'correo'     => fake()->safeEmail(),
         ];
     }
 }

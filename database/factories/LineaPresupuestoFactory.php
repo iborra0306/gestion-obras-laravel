@@ -20,9 +20,9 @@ class LineaPresupuestoFactory extends Factory
     {
         return [
             'presupuesto_id' => Presupuesto::factory(),
-            'descripcion' => fake()->sentence(4),
-            'uds' => fake()->numberBetween(1, 10),
-            'precio' => fake()->randomFloat(2, 10, 500),
+            'descripcion'    => fake()->sentence(4),
+            'uds'            => fake()->numberBetween(1, 10),
+            'precio'         => fake()->randomFloat(2, 10, 500),
         ];
     }
 }

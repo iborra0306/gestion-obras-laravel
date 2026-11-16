@@ -18,11 +18,11 @@ class ProveedorFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => fake()->company(),
-            'direccion' => fake()->streetAddress(),
-            'telefono' => fake()->numerify('9########'),
-            'correo' => fake()->companyEmail(),
-            'tipo' => 'Materiales',
+            'nombre'     => fake()->company(),
+            'direccion'  => fake()->streetAddress(),
+            'telefono'   => fake()->numerify('9########'),
+            'correo'     => fake()->companyEmail(),
+            'tipo'       => 'Materiales',
             'referencia' => fake()->bothify('REF-####'),
         ];
     }
