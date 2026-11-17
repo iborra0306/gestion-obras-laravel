@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/clientes.php';
 require __DIR__ . '/obras.php';
 require __DIR__ . '/trabajadores.php';
+require __DIR__ . '/proveedores.php';
 
 Route::get('/', HomeController::class);
 
