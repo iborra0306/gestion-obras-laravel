@@ -2,31 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Dominio\Cliente;
 use App\Http\Requests\ClienteRequest;
-use App\Repositorios\ClienteRepository;
+use App\Models\Cliente;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class ClientesController extends Controller
 {
-    public function __construct(
-        private readonly ClienteRepository $clientes,
-    ) {
-    }
-
     public function index(): View
     {
-        return view('clientes.index', ['clientes' => $this->clientes->todos()]);
+        return view('clientes.index', ['clientes' => Cliente::orderBy('codigo')->paginate(15)]);
     }
 
     public function show(int $id): View
     {
-        $cliente = $this->clientes->porId($id);
-
-        abort_if($cliente === null, 404);
-
-        return view('clientes.show', ['cliente' => $cliente]);
+        return view('clientes.show', ['cliente' => Cliente::findOrFail($id)]);
     }
 
     public function create(): View
@@ -36,52 +26,32 @@ class ClientesController extends Controller
 
     public function edit(int $id): View
     {
-        $cliente = $this->clientes->porId($id);
-
-        abort_if($cliente === null, 404);
-
-        return view('clientes.edit', ['cliente' => $cliente]);
+        return view('clientes.edit', ['cliente' => Cliente::findOrFail($id)]);
     }
 
     public function store(ClienteRequest $request): RedirectResponse
     {
-        $datos = $request->validated();
-
-        $this->clientes->guardar(new Cliente(
-            null,
-            $datos['nombre'],
-            $datos['apellidos'] ?? null,
-            $datos['nif'] ?? null,
-            $datos['direccion'],
-            $datos['cod_postal'] ?? null,
-            $datos['telefono'],
-            $request->user()->name,
-        ));
+        $cliente = Cliente::create($request->validated());
 
         return redirect()->route('clientes.index')
-            ->with('mensaje', "Cliente {$datos['nombre']} creado correctamente.");
+            ->with('mensaje', "Cliente {$cliente->nombre} creado correctamente.");
     }
 
     public function update(ClienteRequest $request, int $id): RedirectResponse
     {
-        $cliente = $this->clientes->porId($id);
-
-        abort_if($cliente === null, 404);
-
-        $datos = $request->validated();
-
-        $this->clientes->guardar(new Cliente(
-            $id,
-            $datos['nombre'],
-            $datos['apellidos'] ?? null,
-            $datos['nif'] ?? null,
-            $datos['direccion'],
-            $datos['cod_postal'] ?? null,
-            $datos['telefono'],
-            $cliente->creadoPor,
-        ));
+        $cliente = Cliente::findOrFail($id);
+        $cliente->update($request->validated());
 
         return redirect()->route('clientes.show', $id)
-            ->with('mensaje', "Cliente {$datos['nombre']} actualizado correctamente.");
+            ->with('mensaje', "Cliente {$cliente->nombre} actualizado correctamente.");
+    }
+
+    public function destroy(int $id): RedirectResponse
+    {
+        $cliente = Cliente::findOrFail($id);
+        $cliente->delete();
+
+        return redirect()->route('clientes.index')
+            ->with('mensaje', "Cliente {$cliente->nombre} eliminado correctamente.");
     }
 }

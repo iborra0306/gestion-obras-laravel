@@ -6,7 +6,7 @@
         'apellidos'  => ['Apellidos', $cliente?->apellidos],
         'nif'        => ['NIF', $cliente?->nif],
         'direccion'  => ['Dirección', $cliente?->direccion],
-        'cod_postal' => ['Código postal', $cliente?->codPostal],
+        'cod_postal' => ['Código postal', $cliente?->cod_postal],
         'telefono'   => ['Teléfono', $cliente?->telefono],
     ];
 @endphp

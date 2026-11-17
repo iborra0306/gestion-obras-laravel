@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ClienteRequest extends FormRequest
 {
@@ -16,7 +17,7 @@ class ClienteRequest extends FormRequest
         return [
             'nombre' => ['required', 'string', 'max:255'],
             'apellidos' => ['nullable', 'string', 'max:255'],
-            'nif' => ['nullable', 'string', 'max:20'],
+            'nif' => ['nullable', 'string', 'max:20', Rule::unique('clientes')->ignore($this->route('id'))],
             'direccion' => ['required', 'string', 'max:255'],
             'cod_postal' => ['nullable', 'string', 'max:10'],
             'telefono' => ['required', 'string', 'max:20'],
@@ -27,6 +28,8 @@ class ClienteRequest extends FormRequest
     {
         return [
             'nombre' => 'nombre',
+            'apellidos' => 'apellidos',
+            'nif' => 'nif',
             'direccion' => 'dirección',
             'telefono' => 'teléfono',
             'cod_postal' => 'código postal',

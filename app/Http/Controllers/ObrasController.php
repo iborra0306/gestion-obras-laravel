@@ -6,6 +6,7 @@ use App\Http\Requests\ObraRequest;
 use App\Repositorios\ClienteRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use App\Models\Cliente;
 
 class ObrasController extends Controller
 {
@@ -37,7 +38,7 @@ class ObrasController extends Controller
         abort_unless(isset($this->arrayObras[$id]), 404);
 
         $obra = $this->arrayObras[$id];
-        $cliente = $this->clientes->porId($obra['cliente_id']);
+        $cliente = Cliente::find($obra['cliente_id']);
 
         return view('obras.show', [
             'obra' => $obra,
