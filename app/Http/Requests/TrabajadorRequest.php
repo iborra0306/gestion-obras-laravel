@@ -27,7 +27,7 @@ class TrabajadorRequest extends FormRequest
             'apellido' => ['required', 'string', 'max:255'],
             'tipo' => ['nullable', 'string', 'max:255'],
             'telefono' => ['nullable', 'string', 'max:20'],
-            'coste_hora_estandar' => ['required', 'numeric', 'min:0'],
+            'coste_hora_estandar' => ['filled', 'numeric', 'min:0'],
         ];
     }
 
