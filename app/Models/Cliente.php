@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Concerns\TieneCodigo;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Cliente extends Model
 {
@@ -20,5 +21,20 @@ class Cliente extends Model
     protected function nombreCompleto(): Attribute
     {
         return Attribute::get(fn () => trim($this->nombre . ' ' . $this->apellidos));
+    }
+
+    public function presupuestos(): HasMany
+    {
+        return $this->hasMany(Presupuesto::class);
+    }
+
+    public function obras(): HasMany
+    {
+        return $this->hasMany(Obra::class);
+    }
+
+    public function ingresos(): HasMany
+    {
+        return $this->hasMany(Ingreso::class);
     }
 }

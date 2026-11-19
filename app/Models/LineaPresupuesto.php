@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LineaPresupuesto extends Model
 {
@@ -24,5 +25,10 @@ class LineaPresupuesto extends Model
     protected function totalLinea(): Attribute
     {
         return Attribute::get(fn () => $this->uds * $this->precio);
+    }
+
+    public function presupuesto(): BelongsTo
+    {
+        return $this->belongsTo(Presupuesto::class, 'presupuesto_id');
     }
 }

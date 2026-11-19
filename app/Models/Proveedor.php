@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Concerns\TieneCodigo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Proveedor extends Model
 {
@@ -15,4 +16,9 @@ class Proveedor extends Model
     protected $table = 'proveedores';
 
     protected $fillable = ['nombre', 'direccion', 'telefono', 'correo', 'tipo', 'referencia', 'documento', 'num_documento'];
+
+    public function partes(): HasMany
+    {
+        return $this->hasMany(ParteProveedor::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Concerns\TieneCodigo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Especialista extends Model
 {
@@ -15,4 +16,9 @@ class Especialista extends Model
     protected $table = 'especialistas';
 
     protected $fillable = ['tipo', 'referencia', 'comunicacion_parte', 'nombre', 'notas', 'telefono', 'correo'];
+
+    public function partes(): HasMany
+    {
+        return $this->hasMany(ParteEspecialista::class, 'especialista_id');
+    }
 }

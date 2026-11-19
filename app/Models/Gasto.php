@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Concerns\TieneCodigo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Gasto extends Model
 {
@@ -25,5 +26,15 @@ class Gasto extends Model
             'gestion_licencia' => 'boolean',
             'pago_icio'        => 'boolean',
         ];
+    }
+
+    public function obra(): BelongsTo
+    {
+        return $this->belongsTo(Obra::class, 'obra_id');
+    }
+
+    public function presupuesto(): BelongsTo
+    {
+        return $this->belongsTo(Presupuesto::class, 'presupuesto_id');
     }
 }

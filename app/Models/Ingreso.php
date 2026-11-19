@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Concerns\TieneCodigo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Ingreso extends Model
 {
@@ -37,5 +38,15 @@ class Ingreso extends Model
             }
 
         });
+    }
+
+    public function cliente(): BelongsTo
+    {
+        return $this->belongsTo(Cliente::class, 'cliente_id');
+    }
+
+    public function obra(): BelongsTo
+    {
+        return $this->belongsTo(Obra::class, 'obra_id');
     }
 }
