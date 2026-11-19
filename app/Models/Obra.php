@@ -5,8 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Concerns\TieneCodigo;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Obra extends Model
@@ -52,5 +54,35 @@ class Obra extends Model
     public function partesEspecialista(): HasMany
     {
         return $this->hasMany(ParteEspecialista::class);
+    }
+
+    public function lineasTrabajo(): HasManyThrough
+    {
+        return $this->hasManyThrough(LineaParteTrabajo::class, ParteTrabajo::class);
+    }
+
+    public function trabajadoresParticipantes(): Builder
+    {
+        return Trabajador::whereHas('lineasTrabajo.parte', fn ($q) => $q->where('obra_id', $this->id));
+    }
+
+    public function lineasProveedor(): HasManyThrough
+    {
+        return $this->hasManyThrough(ParteProveedor::class, Proveedor::class);
+    }
+
+    public function proveedoresParticipantes(): Builder
+    {
+        return Proveedor::whereHas('partes', fn ($q) => $q->where('obra_id', $this->id));
+    }
+
+    public function lineasEspecialista(): HasManyThrough
+    {
+        return $this->hasManyThrough(ParteEspecialista::class, Especialista::class);
+    }
+
+    public function especialistasParticipantes(): Builder
+    {
+        return Especialista::whereHas('partes', fn ($q) => $q->where('obra_id', $this->id));
     }
 }
