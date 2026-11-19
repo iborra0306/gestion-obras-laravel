@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Concerns\TieneCodigo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -67,5 +68,15 @@ class Presupuesto extends Model
     public function gasto(): HasOne
     {
         return $this->hasOne(Gasto::class);
+    }
+
+    public function proveedores(): BelongsToMany
+    {
+        return $this->belongsToMany(Proveedor::class, 'presupuesto_proveedor', 'presupuesto_id', 'proveedor_id');
+    }
+
+    public function especialistas(): BelongsToMany
+    {
+        return $this->belongsToMany(Especialista::class, 'especialista_presupuesto', 'presupuesto_id', 'especialista_id');
     }
 }
