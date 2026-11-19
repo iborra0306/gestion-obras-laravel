@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ParteEspecialista extends Model
 {
@@ -28,5 +29,20 @@ class ParteEspecialista extends Model
             $p->fecha ??= now()->toDateString();
 
         });
+    }
+
+    public function especialista(): BelongsTo
+    {
+        return $this->belongsTo(Especialista::class, 'especialista_id');
+    }
+
+    public function obra(): BelongsTo
+    {
+        return $this->belongsTo(Obra::class, 'obra_id');
+    }
+
+    public function usuario(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

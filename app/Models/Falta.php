@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Falta extends Model
 {
@@ -31,5 +32,15 @@ class Falta extends Model
         return Attribute::get(
             fn () => (int) $this->fecha_inicio->diffInDays($this->fecha_fin) + 1
         );
+    }
+
+    public function trabajador(): BelongsTo
+    {
+        return $this->belongsTo(Trabajador::class, 'trabajador_id');
+    }
+
+    public function usuario(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

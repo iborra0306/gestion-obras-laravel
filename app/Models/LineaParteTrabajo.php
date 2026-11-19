@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LineaParteTrabajo extends Model
 {
@@ -36,5 +37,15 @@ class LineaParteTrabajo extends Model
             }
 
         });
+    }
+
+    public function trabajador(): BelongsTo
+    {
+        return $this->belongsTo(Trabajador::class, 'trabajador_id');
+    }
+
+    public function parte(): BelongsTo
+    {
+        return $this->belongsTo(ParteTrabajo::class, 'parte_trabajo_id');
     }
 }
